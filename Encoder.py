@@ -1,4 +1,5 @@
 shiftvalue= 0
+from random import randint
 def charactershifter(chrt, shiftvalue):
    No= ord(chrt)
    if No == 32:
@@ -34,7 +35,9 @@ def ynLister(string):
 def encoder(message, shiftvalue):
    newStr= ''
    ynList= ynLister(message)
-   if shiftvalue.isdigit() != True:
+   originShiftValue = shiftvalue
+   if shiftvalue == "rndm": shiftvalue = randint(0,26)
+   elif shiftvalue.isdigit() != True:
          return ("I\'m sorry, that\'s not a valid shift value. Please try another number. The value must be an integer.")
    else:
          shiftvalue= int(shiftvalue)
@@ -45,6 +48,17 @@ def encoder(message, shiftvalue):
       else:
             newChr= charactershifter(message[a], shiftvalue)
             newStr += newChr
-   newStr= characterReturn(newStr, ynList)   
+   newStr= characterReturn(newStr, ynList)
+   if originShiftValue == "rndm":
+         yesno= input("Would you like to know the shift value? Reply yes/no. Default value = no:")
+         tries = 3
+         while yesno != "no" and yesno != "yes" and tries > 0:
+               print("Invalid. Try again")
+               tries -= 1
+               if tries == 0: 
+                     print("Attempts limit reached")
+                     break
+               yesno= input("Would you like to know the shift value? Reply yes/no:")
+         if yesno == "yes": print("The shift value was", shiftvalue)
    return newStr
-print(encoder(input("Insert the word of which you would like to encode:"), input("Enter the shift value of the encoder:")))
+print("The encoded word is:", encoder(input("Insert the word of which you would like to encode:"), input("Enter the shift value of the encoder, or enter \"rndm\" to randomize:")))
