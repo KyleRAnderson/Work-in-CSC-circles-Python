@@ -63,7 +63,6 @@ def bigFunction(encodedString):
                 bigprobsWord= wordList[location]       
                 confirm = input("Does this decoded word make sense?:" + str(bigprobsWord) + "Reply yes/no, or if you would like to see a list of all possibilities, reply \"list\":")
                 if confirm == "list" or Error == True:
-                    Error = False
                     print(wordList)
                     rightWord= str(input("Which word on the list looks right?"))
                     if Error == True:
@@ -72,13 +71,12 @@ def bigFunction(encodedString):
                         location= wordList.index(rightWord)
                         bigprobsWord= wordList[location]
                     except ValueError: #We catch any errors if the word they enter is not on the list
-                        print("I\'m Sorry, that\'s not in the list. Try again.")
                         Error = True
        if len(wordList) <= 1:
            print("There is only one word left. That has to be it!")
            break                 
        elif confirm == "no": continue
-       if confirm != "yes" or confirm != "list" or confirm != "no" or Error == True: attempts -= 1
+       if (confirm != "yes" and confirm != "list" and confirm != "no") or Error == True: attempts -= 1
        if attempts == 0: 
            print("Attempts limit reached.")
            break
@@ -86,7 +84,7 @@ def bigFunction(encodedString):
        if Error == True: 
            rightWord= input("I\'m sorry, that\'s not on the list. Write a word that is on the list:")
            continue
-       if Error == False and confirm == "no": 
+       if Error == False and confirm == "list": 
            print("Successfully selected a word that appears on the list! Proceed.")
            break 
        confirm= input("I\'m sorry, that\'s invalid. Try again.")
