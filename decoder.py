@@ -95,7 +95,7 @@ def bigFunction(encodedString):
    limit = 3
    while goodToGo== False and limit > 0:
        askQuestion= str(input("Would you like to know what the shift value was? Reply yes/no. Default value = no:"))
-       askQuestion= askQuestion.replace(" ", " ")
+       askQuestion= askQuestion.replace(" ", "")
        if askQuestion.isalpha() != True:
            print("Did you include any non-alphabetic characters in there? Try again.")
            limit -= 1
