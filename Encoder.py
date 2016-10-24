@@ -35,6 +35,7 @@ def ynLister(string):
 def encoder(message, shiftvalue):
    newStr= ''
    ynList= ynLister(message)
+   message= message.upper()
    originShiftValue = shiftvalue
    if shiftvalue == "rndm": shiftvalue = randint(0,26)
    elif shiftvalue.isdigit() != True:
