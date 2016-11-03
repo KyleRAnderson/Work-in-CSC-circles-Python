@@ -4,4 +4,4 @@ def countup(n):
   else:
     countup(n - 1)
     print(n)
-countup(input('Insert yer input'))
+print(countup(int(input('Insert yer input'))))
